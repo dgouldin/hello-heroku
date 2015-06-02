@@ -84,3 +84,14 @@ STATIC_URL = '/static/'
 
 import dj_database_url
 DATABASES = {'default': dj_database_url.config()}
+
+if 'ROLLBAR_ACCESS_TOKEN' in os.environ:
+    MIDDLEWARE_CLASSES += (
+        'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
+    )
+    ROLLBAR = {
+        'access_token': os.environ['ROLLBAR_ACCESS_TOKEN'],
+        'environment': 'development' if DEBUG else 'production',
+        'branch': 'master',
+        'root': BASE_DIR,
+    }
