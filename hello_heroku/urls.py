@@ -9,4 +9,7 @@ def hello_world(request):
     name = os.environ.get('NAME', 'World')
     return HttpResponse('Hello {}!'.format(name))
 
-urlpatterns = [url(r'^$', hello_world)]
+def error(request):
+    1/0
+
+urlpatterns = [url(r'^$', hello_world), url(r'^error/$', error)]
