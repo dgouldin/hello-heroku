@@ -1,1 +1,1 @@
-web: gunicorn hello_heroku.wsgi --log-file -
+web: newrelic-admin run-program gunicorn hello_heroku.wsgi --log-file -
